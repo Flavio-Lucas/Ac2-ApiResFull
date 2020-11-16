@@ -1,3 +1,5 @@
+//#region imports
+
 package com.escolinha.pooac2.repository;
 
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import com.escolinha.pooac2.models.School;
 
 import org.springframework.stereotype.Component;
 
+//#endregion
+
 @Component
 public class SchoolRepository {
 
@@ -20,6 +24,9 @@ public class SchoolRepository {
 
   //#endregion
 
+  /**
+   * Metodo que inicializa dados de escolas mockadas para testes da api
+   */
   @PostConstruct
   public void registerSchool() {
 

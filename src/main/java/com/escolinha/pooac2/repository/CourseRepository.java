@@ -1,3 +1,5 @@
+//#region imports
+
 package com.escolinha.pooac2.repository;
 
 import java.util.ArrayList;
@@ -10,12 +12,20 @@ import com.escolinha.pooac2.models.Course;
 
 import org.springframework.stereotype.Component;
 
+//#endregion
+
 @Component
 public class CourseRepository {
 
+  /**
+   * Lista de cursos
+   */
   private ArrayList<Course> courses = new ArrayList<Course>(); 
   private static int nextId = 0;
 
+  /**
+   * Metodo que inicializa cursos genericos para efeito de testes
+   */
   @PostConstruct
   public void registerCourse() {
     
@@ -42,10 +52,18 @@ public class CourseRepository {
     
   }
 
+  /**
+   * Metodo que lista os cursos
+   */
   public List<Course> getAllCourses(){
     return courses;
   }
 
+  /**
+   * Metodo que retorna um curso através de seu identificador
+   * @param IdCourse identificador do curso
+   * @return
+   */
   public Optional<Course> getCourseById(int IdCourse){
     for(Course item: courses){
       if(item.getIdCourse() == IdCourse){
@@ -55,6 +73,11 @@ public class CourseRepository {
     return Optional.empty();
   }
 
+  /**
+   * Metodo que atualiza um curso
+   * 
+   * @param course
+   */
   public Course update(Course course) {
     Course item = getCourseById(course.getIdCourse()).get();
 
@@ -64,12 +87,22 @@ public class CourseRepository {
     return item;
   }
 
+  /**
+   * Metodo que salva um curso e adiciona ele a lista
+   * 
+   * @param course curso a ser adicionado
+   */
   public Course saveCourse(Course course){
     course.setIdCourse(++nextId);
     courses.add(course);
     return course;
   }
 
+  /**
+   * Metodo que remove um curso da lista
+   * 
+   * @param course curso a ser removido
+   */
   public void removeCourse(Course course){
     courses.remove(course);
   }
